@@ -1,0 +1,219 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+header h1{
+    cursor: pointer;
+    transition: 0.3s;
+}
+header h1:hover{
+    text-shadow:
+    0 0 10px #E50914,
+    0 0 20px #E50914;
+    transform: scale(1.05);
+}
+body{
+    background: linear-gradient(
+        to bottom,
+        #000000,
+        #111111,
+        #000000
+    );
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 50px;
+}
+
+header h1{
+    color: #E50914;
+    font-size: 3rem;
+    font-weight: bold;
+}
+.button1{
+    background-color:#E50914;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button1:hover{
+    background-color: #c40812;
+}
+.sec1{
+    text-align: center;
+    padding: 100px 20px;
+
+}
+.sec1 h2:first-child
+{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.sec1 h2:last-of-type{
+    font-size: 1.5rem;
+}
+.sec1 p{
+    margin:20px 0;
+}
+input{
+    padding: 15px;
+    width: 300px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: #222;
+    color: white;
+}
+.button2{
+    background-color: #E50914;
+    color:white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button2:hover{
+      background-color: #c40812;
+}
+section h2{
+    margin-bottom: 20px;
+}
+section{
+    padding: 40px 50px;
+    border-bottom: 8px solid #222;
+}
+section div{
+    margin-top: 10px;
+}
+footer{
+    padding: 40px 50px;
+    background-color: #111;
+}
+footer ul{
+    list-style: none;
+}
+footer li a{
+    color: gray;
+    text-decoration: none;
+}
+.movies{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.movies div{
+    background-color: #222;
+
+    width: 180px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+.movies div:hover{
+    transform: scale(1.05);
+    transition: 0.5s;
+    background-color:#333;
+    
+}
+.sec1{
+    background-image: linear-gradient(
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.7)
+        ),
+        url("netflixlogo.jpg");
+        background-size: cover;
+        background-position: center;
+        min-height: 80vh;
+}
+.button1,
+.button2{
+    transition: 0.3s;
+}
+.button1:hover,
+.button2:hover{
+    transform: scale(1.05);
+}
+header h1{
+    transition: 0.3s;
+}
+header h1:hover{
+    transform:scale(1.05);
+}
+.sec4 article{
+        background-color:#222;
+        padding:25px;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+.sec4 article:hover{
+    background-color: #333;
+}
+footer ul{
+    display: grid;
+    grid-template-columns:repeat(4,1fr);
+    gap: 15px;
+}
+#reasons{
+    display: grid;
+    grid-template-columns: 
+    repeat(auto-fit,minmax(250px,1fr));
+}
+#reasons article{
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+#reasons article:hover{
+    transform: translateY(-8px);
+    background-color: #333;
+}
+@keyframes fadeUp{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.sec1,
+.sec2,
+.sec3,
+.sec4,
+.sec5{
+    animation: fadeUp 1s ease-in;
+}
+.button2{
+    animation:pulse 2s infinite;
+}
+.button1{
+    animation: pulse 2s infinite;
+}
+@keyframes pulse{
+    0%{
+        transform: scale(1);
+
+    }
+    50%{
+        transform: scale(1.05);
+
+    }
+    100%{
+        transform: scale(1);
+
+    }
+}
