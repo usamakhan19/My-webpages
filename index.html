@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hayat Foods | Taste That Lives Forever</title>
+
+  <style>
+    /* ---------- COLORS ---------- */
+    :root {
+      --dark-brown: #2C1810;
+      --cream: #F9E0AE;
+      --accent: #e34f26;
+      --text-dark: #1a1a1a;
+      --text-light: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: var(--dark-brown);
+      color: var(--text-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: var(--cream);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--cream);
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to right, rgba(44,24,16,0.9), rgba(44,24,16,0.5)), url('https://images.unsplash.com/photo-1606755962773-0e25b3d064ad?auto=format&fit=crop&w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 5%;
+      color: var(--cream);
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 500px;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    .hero button {
+      margin-top: 2rem;
+      background-color: var(--accent);
+      border: none;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .hero button:hover {
+      transform: scale(1.1);
+      background-color: #ff7043;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- MENU SECTION ---------- */
+    .menu {
+      padding: 6rem 5% 4rem;
+      background-color: var(--cream);
+      text-align: center;
+    }
+
+    .menu h2 {
+      font-size: 2.5rem;
+      color: var(--dark-brown);
+      margin-bottom: 2rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .menu-item {
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .menu-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .menu-item h3 {
+      margin: 1rem 0 0.5rem;
+      color: var(--dark-brown);
+    }
+
+    .menu-item p {
+      color: #555;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      padding: 0 1rem;
+    }
+
+    .menu-item button {
+      margin-bottom: 1rem;
+      background-color: var(--dark-brown);
+      color: var(--cream);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .menu-item button:hover {
+      background-color: var(--accent);
+      transform: scale(1.05);
+    }
+
+    /* ---------- ABOUT SECTION ---------- */
+    .about {
+      padding: 5rem 5%;
+      background-color: var(--dark-brown);
+      color: var(--cream);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .about img {
+      flex: 1 1 300px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-text p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    /* ---------- CONTACT SECTION ---------- */
+    .contact {
+      padding: 5rem 5%;
+      background-color: var(--cream);
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: var(--dark-brown);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact input, .contact textarea {
+      padding: 0.8rem;
+      border: 2px solid var(--dark-brown);
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .contact input:focus, .contact textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
+    }
+
+    .contact button {
+      background-color: var(--dark-brown);
+      color: var(--cream);
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact button:hover {
+      background-color: var(--accent);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background-color: var(--dark-brown);
+      color: var(--cream);
+      text-align: center;
+      padding: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+      .about {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🍔 Hayat Foods</h1>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <h2>Taste That Lives Forever</h2>
+    <p>Welcome to Hayat Foods — where every bite tells a story. Crafted with love, cooked with perfection, served with joy.</p>
+    <button onclick="scrollToMenu()">Explore Menu</button>
+  </section>
+
+  <section class="menu" id="menu">
+    <h2>Our Bestsellers</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" alt="Burger">
+        <h3>Classic Burger</h3>
+        <p>Grilled to perfection with fresh lettuce, tomatoes, and our secret sauce.</p>
+        <button>Order Now</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1606755962773-0e25b3d064ad?auto=format&fit=crop&w=800&q=80" alt="Fries">
+        <h3>Crispy Fries</h3>
+        <p>Golden, crispy, and seasoned to perfection — the perfect sidekick.</p>
+        <button>Order Now</button>
+      </div>
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1607013405814-3b2caa6e6e1b?auto=format&fit=crop&w=800&q=80" alt="Drink">
+        <h3>Signature Drink</h3>
+        <p>Cool down with our signature blend of fruits and ice — refreshing and unique.</p>
+        <button>Order Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" alt="About Hayat Foods">
+    <div class="about-text">
+      <h2>About Hayat Foods</h2>
+      <p>Since our humble beginnings, Hayat Foods has been on a mission to bring the joy of real flavors to every meal. 
+        From sizzling burgers to crispy fries, we blend tradition with innovation to make your dining experience unforgettable. 
+        Our chefs are passionate about crafting recipes that not only satisfy your hunger but also warm your heart.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Hayat Foods. All rights reserved.
+  </footer>
+
+  <script>
+    // Scroll to Menu Section
+    function scrollToMenu() {
+      document.querySelector("#menu").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Simple form submit alert
+    function submitForm(event) {
+      event.preventDefault();
+      alert("Thank you for contacting Hayat Foods! We'll get back to you soon.");
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>

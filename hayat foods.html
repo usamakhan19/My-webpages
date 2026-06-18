@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hayat Foods — Taste That Lives Forever</title>
+  <meta name="description" content="Hayat Foods — premium fast food. Burgers, fries, shakes. Order online.">
+  <style>
+    /* ===========================
+       VARIABLES / THEME
+       =========================== */
+    :root{
+      --brown-900: #2C1810;    /* main dark brown */
+      --cream-50:  #F9E0AE;    /* cream */
+      --cream-100: #F7D79B;
+      --muted:     #C8B7A6;
+      --white:     #FFFFFF;
+      --glass:     rgba(255,255,255,0.06);
+      --accent:    #D9903D;
+      --shadow:    rgba(6,6,6,0.5);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --max-width: 1100px;
+      --card-gap: 18px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ===========================
+       GLOBAL / LAYOUT
+       =========================== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--brown-900), #2b1710 60%);
+      color:var(--cream-50);
+      font-size:16px;
+      line-height:1.45;
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
+      user-select:none;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:calc(100% - 40px);
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:40px 0;
+    }
+
+    /* ===========================
+       NAVBAR
+       =========================== */
+    header{
+      position:sticky;
+      top:12px;
+      z-index:1000;
+      width:100%;
+      display:flex;
+      justify-content:center;
+      pointer-events:auto;
+    }
+    nav{
+      width:calc(100% - 40px);
+      max-width:var(--max-width);
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:10px 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo{
+      width:48px;height:48px;border-radius:12px;background:
+      radial-gradient(circle at 30% 20%, rgba(249,224,174,0.35), transparent 20%),
+      linear-gradient(135deg,var(--cream-100), var(--accent));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--brown-900);font-size:20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    }
+    .title{
+      display:flex;flex-direction:column;line-height:1;
+    }
+    .title .name{font-weight:700;font-size:14px}
+    .title .tag{font-size:11px;color:var(--muted)}
+
+    .nav-links{margin-left:18px;display:flex;gap:14px;align-items:center;flex:1}
+    .nav-links a{padding:8px 12px;border-radius:10px;color:var(--cream-50);font-weight:600;opacity:0.95}
+    .nav-links a:hover{transform:translateY(-3px);background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));}
+
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      background:linear-gradient(180deg,var(--cream-50), var(--cream-100));
+      color:var(--brown-900);padding:10px 14px;border-radius:12px;font-weight:700;border:none;cursor:pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      transform-origin:center;
+      transition:transform .22s cubic-bezier(.2,.9,.3,1);
+    }
+    .btn:active{transform:translateY(1px) scale(.995)}
+    .btn.ghost{background:transparent;color:var(--cream-50);border:1px solid rgba(255,255,255,0.04);box-shadow:none}
+
+    .cart-btn{position:relative;padding:8px 12px}
+    .cart-count{position:absolute;right:2px;top:-6px;background:var(--accent);color:var(--brown-900);font-weight:800;padding:4px 7px;border-radius:999px;font-size:12px}
+
+    /* ===========================
+       HERO SECTION
+       =========================== */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:30px;
+      align-items:center;
+      padding:56px 0;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));
+      border-radius:var(--radius-lg);
+      padding:28px;border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+    }
+    .hero h1{font-size:36px;margin:0 0 10px 0;letter-spacing:-0.5px}
+    .hero .subtitle{font-size:18px;color:var(--muted);min-height:28px}
+    .hero .cta-row{display:flex;gap:12px;margin-top:20px;align-items:center}
+    .hero .features{display:flex;gap:14px;margin-top:22px;flex-wrap:wrap}
+    .feature{
+      background:var(--glass);border-radius:12px;padding:10px 12px;font-weight:700;color:var(--cream-50);
+      display:flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,0.03)
+    }
+
+    .hero-visual{
+      position:relative;display:flex;align-items:center;justify-content:center;height:420px;border-radius:20px;overflow:visible;
+    }
+    .food-glass{
+      width:420px;height:420px;border-radius:20px;background:
+      radial-gradient(circle at 60% 20%, rgba(255,255,255,0.03), transparent 20%),
+      linear-gradient(180deg, rgba(249,224,174,0.06), rgba(0,0,0,0.06));
+      display:flex;align-items:center;justify-content:center;
+      transform:translateY(0);transition:transform .6s cubic-bezier(.2,.9,.3,1);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .food-card{
+      width:320px;height:320px;border-radius:16px;background:
+      linear-gradient(180deg,#fff0 0%, #fff0 100%);
+      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+      transform-style:preserve-3d;transition:transform .35s ease, box-shadow .35s ease;
+      cursor:default;padding:18px;
+    }
+    .food-image{
+      width:220px;height:160px;border-radius:14px;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="160"><rect fill="%23d9903d" width="220" height="160" rx="14"/><text x="50%" y="54%" font-size="22" font-family="Arial" font-weight="700" text-anchor="middle" fill="%232C1810">Hayat Burger</text></svg>');background-size:cover;box-shadow: 0 10px 30px rgba(0,0,0,0.45);}
+    .price{font-size:20px;font-weight:800;color:var(--cream-50)}
+    .rating{color:var(--muted);font-size:13px}
+
+    /* hover pop effect */
+    .food-card:hover{transform: translateY(-10px) rotateX(6deg); box-shadow: 0 30px 60px rgba(0,0,0,0.6);}
+
+    /* tiny smoke animation in hero */
+    .smoke{
+      position:absolute;left:20px;top:20px;width:160px;height:160px;opacity:0.08;
+      background:radial-gradient(circle at 40% 40%, rgba(249,224,174,0.9), transparent 40%);
+      filter: blur(30px);transform:rotate(12deg);
+      animation: drift 6s linear infinite;
+    }
+    @keyframes drift{
+      0%{transform:translateY(0) rotate(0)}
+      50%{transform:translateY(-12px) rotate(6deg)}
+      100%{transform:translateY(0) rotate(0)}
+    }
+
+    /* ===========================
+       OFFERS & CARDS
+       =========================== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:var(--card-gap);
+      margin-top:24px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
+      transition:transform .24s ease, box-shadow .24s ease;
+      cursor:pointer;
+    }
+    .card:hover{transform:translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.55)}
+    .card h3{margin:6px 0 0 0}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* ===========================
+       SIGNATURE DISHES CAROUSEL
+       =========================== */
+    .carousel{
+      display:flex;gap:12px;align-items:center;margin-top:8px;
+      overflow:hidden;padding:10px 6px;
+    }
+    .carousel-track{
+      display:flex;gap:14px;transition:transform .6s cubic-bezier(.2,.9,.3,1);
+      will-change:transform;
+    }
+    .dish{
+      width:220px;min-width:220px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.03);
+      display:flex;flex-direction:column;gap:8px;align-items:center;cursor:pointer;
+      transform-origin:center;
+    }
+    .dish:hover{transform:translateY(-8px) scale(1.02)}
+    .dish .thumb{width:160px;height:110px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+
+    /* ===========================
+       MENU SECTION
+       =========================== */
+    .menu{
+      margin-top:40px;padding:24px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius:20px;border:1px solid rgba(255,255,255,0.03)
+    }
+    .menu-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .filters{display:flex;gap:8px;align-items:center}
+    .filter-btn{padding:8px 12px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .filter-btn.active{background:linear-gradient(90deg,var(--cream-100),var(--accent));color:var(--brown-900);font-weight:800}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
+
+    .menu-item{
+      display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .menu-item:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.5)}
+    .mi-thumb{width:96px;height:72px;border-radius:10px;background-size:cover;background-position:center;flex-shrink:0}
+    .mi-info{flex:1}
+    .mi-title{font-weight:800}
+    .mi-desc{color:var(--muted);font-size:13px}
+    .mi-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+
+    /* ===========================
+       CART SIDEBAR
+       =========================== */
+    .cart-side{
+      position:fixed;right:18px;top:92px;width:340px;max-width:92vw;height:70vh;background:linear-gradient(180deg,#ffffff06,#ffffff03);
+      border-radius:16px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+      transform:translateX(120%);transition:transform .45s cubic-bezier(.2,.9,.3,1);
+      z-index:2000;
+    }
+    .cart-side.open{transform:translateX(0)}
+    .cart-list{display:flex;flex-direction:column;gap:12px;margin-top:8px;overflow:auto;max-height:44vh;padding-right:6px}
+    .cart-item{display:flex;gap:10px;align-items:center}
+    .cart-item .ci-thumb{width:64px;height:48px;border-radius:8px;background-size:cover}
+    .cart-item .ci-meta{flex:1}
+    .cart-summary{margin-top:12px;display:flex;justify-content:space-between;align-items:center;font-weight:800}
+
+    /* ===========================
+       ABOUT & CONTACT
+       =========================== */
+    .about{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center;margin-top:28px}
+    .team{display:flex;gap:12px;margin-top:10px}
+    .member{background:var(--glass);padding:12px;border-radius:12px;text-align:center;width:120px}
+
+    .contact{
+      margin-top:28px;padding:18px;border-radius:16px;background:linear-gradient(180deg,#ffffff03,#00000003);border:1px solid rgba(255,255,255,0.02)
+    }
+    .form-row{display:flex;gap:8px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px;border-radius:10px;color:var(--cream-50);outline:none}
+    input:focus,textarea:focus{box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 0 4px rgba(249,224,174,0.06);border-color:rgba(249,224,174,0.18)}
+    textarea{min-height:120px;resize:vertical}
+
+    /* ===========================
+       FOOTER
+       =========================== */
+    footer{margin-top:48px;padding:28px 0;color:var(--muted);text-align:center;font-size:14px}
+
+    /* ===========================
+       CUSTOM CURSOR
+       =========================== */
+    .cursor{
+      position:fixed;left:0;top:0;width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%);
+      background:linear-gradient(180deg,var(--cream-50),var(--cream-100));pointer-events:none;z-index:9999;mix-blend-mode:normal;
+      box-shadow:0 6px 18px rgba(0,0,0,0.45);
+      transition:transform .12s linear, width .18s ease, height .18s ease, opacity .18s ease;
+    }
+    .cursor.big{width:52px;height:52px;opacity:.95;mix-blend-mode:screen}
+
+    /* ===========================
+       RESPONSIVE
+       =========================== */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .hero-visual{height:360px}
+      nav{padding:12px}
+      .nav-links{display:none}
+    }
+    @media (max-width:520px){
+      .hero-visual{height:300px}
+    }
+  </style>
+</head>
+<body>
+  <!-- CUSTOM CURSOR -->
+  <div id="custom-cursor" class="cursor" aria-hidden="true"></div>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav role="navigation" aria-label="Main">
+      <div class="brand">
+        <div class="logo">HF</div>
+        <div class="title">
+          <div class="name">Hayat Foods</div>
+          <div class="tag">Taste That Lives Forever</div>
+        </div>
+      </div>
+
+      <div class="nav-links" role="menu" aria-hidden="false">
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="actions">
+        <button class="btn ghost" id="theme-toggle" title="Theme (demo)">Theme</button>
+        <button class="btn" id="order-now">Order Now</button>
+        <button class="btn cart-btn" id="cart-open" aria-label="Open cart">
+          Cart
+          <span id="cart-count" class="cart-count">0</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="home" class="container" role="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Hayat Foods</h1>
+        <div class="subtitle" id="hero-sub">Premium burgers. Cozy vibes. Fresh taste.</div>
+
+        <div class="cta-row">
+          <button class="btn" id="hero-order">Order Now</button>
+          <button class="btn ghost" id="hero-menu">View Menu</button>
+        </div>
+
+        <div class="features" aria-hidden="true">
+          <div class="feature">🔥 Freshly grilled</div>
+          <div class="feature">⏱ Fast delivery</div>
+          <div class="feature">🥇 Signature recipes</div>
+        </div>
+
+        <div class="card" style="margin-top:20px">
+          <h3>Weekend Special</h3>
+          <p class="muted">Buy 1 Get 1 on Classic Burgers — Saturday & Sunday</p>
+        </div>
+
+        <div style="margin-top:16px">
+          <h3 style="margin-bottom:8px">Signature Dishes</h3>
+          <div class="carousel" id="carousel">
+            <div class="carousel-track" id="carousel-track">
+              <div class="dish" data-id="d1">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1604908177602-9fd402ab6f77?auto=format&fit=crop&w=800&q=60')"></div>
+                <div style="font-weight:800">Hayat Classic</div>
+                <div class="muted">Juicy beef, secret sauce</div>
+              </div>
+              <div class="dish" data-id="d2">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1548943487-a2e4e0b1f1ac?auto=format&fit=crop&w=800&q=60')"></div>
+                <div style="font-weight:800">Crispy Fries</div>
+                <div class="muted">Twice-fried, extra crunchy</div>
+              </div>
+              <div class="dish" data-id="d3">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1611691548693-0b2a4a1d0d3e?auto=format&fit=crop&w=800&q=60')"></div>
+                <div style="font-weight:800">Choco Shake</div>
+                <div class="muted">Silky and decadent</div>
+              </div>
+              <div class="dish" data-id="d4">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=60')"></div>
+                <div style="font-weight:800">Veggie Delight</div>
+                <div class="muted">Grilled seasonal veggies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="smoke"></div>
+        <div class="food-glass">
+          <div class="food-card" id="food-card">
+            <div class="food-image" aria-hidden="true"></div>
+            <div class="price">₨ 699</div>
+            <div class="rating">4.8 • 204 Reviews</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu" class="menu" aria-labelledby="menu-title">
+      <div class="menu-head">
+        <div>
+          <h2 id="menu-title">Our Menu</h2>
+          <div class="muted">Made fresh daily — choose a category to filter</div>
+        </div>
+        <div class="filters" role="tablist" aria-label="Menu Filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="burgers">Burgers</button>
+          <button class="filter-btn" data-filter="fries">Fries</button>
+          <button class="filter-btn" data-filter="drinks">Drinks</button>
+          <button class="filter-btn" data-filter="desserts">Desserts</button>
+        </div>
+      </div>
+
+      <!-- grid -->
+      <div class="menu-grid" id="menu-grid">
+        <!-- menu item example -->
+        <div class="menu-item" data-category="burgers" data-id="m1">
+          <div class="mi-thumb" style="background-image:url('https://images.unsplash.com/photo-1606756790267-0062a6b7e3ec?auto=format&fit=crop&w=800&q=60')"></div>
+          <div class="mi-info">
+            <div class="mi-title">Hayat Classic Burger</div>
+            <div class="mi-desc">Beef patty, lettuce, tomato, secret Hayat sauce.</div>
+          </div>
+          <div class="mi-actions">
+            <div style="font-weight:800">₨ 699</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn add-cart" data-id="m1">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="fries" data-id="m2">
+          <div class="mi-thumb" style="background-image:url('https://images.unsplash.com/photo-1601924582975-9b2b8f8bd9f7?auto=format&fit=crop&w=800&q=60')"></div>
+          <div class="mi-info">
+            <div class="mi-title">Crispy Fries</div>
+            <div class="mi-desc">Double-fried with crunchy seasoning.</div>
+          </div>
+          <div class="mi-actions">
+            <div style="font-weight:800">₨ 249</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn add-cart" data-id="m2">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="drinks" data-id="m3">
+          <div class="mi-thumb" style="background-image:url('https://images.unsplash.com/photo-1604908554027-c8d0660a6b2a?auto=format&fit=crop&w=800&q=60')"></div>
+          <div class="mi-info">
+            <div class="mi-title">Choco Shake</div>
+            <div class="mi-desc">Creamy shake with premium cocoa.</div>
+          </div>
+          <div class="mi-actions">
+            <div style="font-weight:800">₨ 299</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn add-cart" data-id="m3">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" data-category="desserts" data-id="m4">
+          <div class="mi-thumb" style="background-image:url('https://images.unsplash.com/photo-1604908177601-8a6b1a0d2b0a?auto=format&fit=crop&w=800&q=60')"></div>
+          <div class="mi-info">
+            <div class="mi-title">Warm Brownie</div>
+            <div class="mi-desc">Gooey chocolate brownie with ice cream.</div>
+          </div>
+          <div class="mi-actions">
+            <div style="font-weight:800">₨ 349</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn add-cart" data-id="m4">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- more items could be dynamically inserted -->
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div>
+        <h2 id="about-title">Our Story</h2>
+        <p class="muted">Hayat Foods started as a small kitchen with one goal: make food that feels like home. We combine traditional flavours with modern techniques to serve food that comforts and excites.</p>
+
+        <div class="team">
+          <div class="member">
+            <div style="font-weight:800">Founders</div>
+            <div class="muted">Usama & Team</div>
+          </div>
+          <div class="member">
+            <div style="font-weight:800">Head Chef</div>
+            <div class="muted">Chef Ali</div>
+          </div>
+          <div class="member">
+            <div style="font-weight:800">Delivery</div>
+            <div class="muted">Fast & Friendly</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:8px">Why choose Hayat?</h3>
+        <div class="card">
+          <p class="muted">Fresh ingredients • Quick service • Warm hospitality • Family recipes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact Us</h2>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:280px">
+          <p class="muted">Questions? Catering? Feedback? Send us a message and we will respond within 24 hours.</p>
+          <div style="margin-top:12px">
+            <div style="display:flex;gap:10px;align-items:center">
+              <div style="background:var(--glass);padding:10px;border-radius:12px">📞</div>
+              <div>
+                <div style="font-weight:800">+92 300 0000000</div>
+                <div class="muted">Mon–Sun · 10:00–22:00</div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+              <div style="background:var(--glass);padding:10px;border-radius:12px">📍</div>
+              <div>
+                <div style="font-weight:800">Hayat Foods HQ</div>
+                <div class="muted">Karachi, Pakistan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="contact-form" style="flex:1;min-width:300px;max-width:560px">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <input type="text" id="name" placeholder="Your name" required style="flex:1">
+            <input type="email" id="email" placeholder="Email" required style="flex:1">
+          </div>
+          <textarea id="message" placeholder="How can we help?" required></textarea>
+          <div style="display:flex;justify-content:flex-end;margin-top:8px">
+            <button class="btn" type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Hayat Foods — Made with ❤️. Follow us on social media.
+    </footer>
+
+  </main>
+
+  <!-- CART SIDEBAR -->
+  <aside id="cart" class="cart-side" aria-hidden="true">
+    <h3 style="margin:0">Your Order</h3>
+    <div class="muted">Items in cart</div>
+    <div class="cart-list" id="cart-list" role="list"></div>
+    <div class="cart-summary">
+      <div>Total</div>
+      <div id="cart-total">₨ 0</div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn" id="checkout">Checkout</button>
+      <button class="btn ghost" id="cart-close">Close</button>
+    </div>
+  </aside>
+
+  <script>
+    /* ===========================
+       UTILITY / DATABASE (SAMPLE)
+       =========================== */
+    const menuData = {
+      m1: { id:'m1', title:'Hayat Classic Burger', price:699, category:'burgers', img:'https://images.unsplash.com/photo-1606756790267-0062a6b7e3ec?auto=format&fit=crop&w=800&q=60' },
+      m2: { id:'m2', title:'Crispy Fries', price:249, category:'fries', img:'https://images.unsplash.com/photo-1601924582975-9b2b8f8bd9f7?auto=format&fit=crop&w=800&q=60' },
+      m3: { id:'m3', title:'Choco Shake', price:299, category:'drinks', img:'https://images.unsplash.com/photo-1604908554027-c8d0660a6b2a?auto=format&fit=crop&w=800&q=60' },
+      m4: { id:'m4', title:'Warm Brownie', price:349, category:'desserts', img:'https://images.unsplash.com/photo-1604908177601-8a6b1a0d2b0a?auto=format&fit=crop&w=800&q=60' }
+    };
+
+    /* ===========================
+       HERO: Typewriter subtitle
+       =========================== */
+    (function heroTypewriter(){
+      const text = ['Premium burgers. Cozy vibes. Fresh taste.','Family recipes. Modern twist.','Warm. Crisp. Delicious.'];
+      let i=0, j=0, forward=true;
+      const el = document.getElementById('hero-sub');
+      setInterval(()=> {
+        const s = text[i];
+        if(forward){
+          j++;
+          el.textContent = s.slice(0,j);
+          if(j>=s.length){ forward=false; setTimeout(()=>{},700) }
+        } else {
+          j--;
+          el.textContent = s.slice(0,j);
+          if(j<=0){ forward=true; i=(i+1)%text.length; }
+        }
+      },40);
+    })();
+
+    /* ===========================
+       CAROUSEL (auto-scroll + drag)
+       =========================== */
+    (function carousel(){
+      const track = document.getElementById('carousel-track');
+      let pos = 0;
+      const step = 234; // approx width + gap
+      let w = track.scrollWidth;
+      let timer;
+      function auto(){
+        timer = setInterval(()=>{
+          pos += step;
+          if(pos > track.scrollWidth - track.offsetWidth) pos = 0;
+          track.style.transform = `translateX(-${pos}px)`;
+        },2800);
+      }
+      auto();
+
+      // pause on hover
+      track.parentElement.addEventListener('mouseenter', ()=> clearInterval(timer));
+      track.parentElement.addEventListener('mouseleave', auto);
+
+      // clicking dish opens quick preview (small modal effect)
+      [...track.querySelectorAll('.dish')].forEach(d=>{
+        d.addEventListener('click', ()=> {
+          const id = d.dataset.id;
+          alert('Quick preview: ' + d.querySelector('div:nth-child(2)').textContent + ' — Add to menu to order.');
+        });
+      });
+    })();
+
+    /* ===========================
+       MENU FILTERS
+       =========================== */
+    (function filters(){
+      const buttons = document.querySelectorAll('.filter-btn');
+      const grid = document.getElementById('menu-grid');
+      buttons.forEach(b=>{
+        b.addEventListener('click', ()=> {
+          buttons.forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          const f = b.dataset.filter;
+          const items = grid.querySelectorAll('.menu-item');
+          items.forEach(it => {
+            if(f==='all' || it.dataset.category === f) it.style.display = 'flex';
+            else it.style.display = 'none';
+          });
+        });
+      });
+    })();
+
+    /* ===========================
+       CUSTOM CURSOR
+       =========================== */
+    (function cursor(){
+      const cur = document.getElementById('custom-cursor');
+      let mouse = {x:window.innerWidth/2,y:window.innerHeight/2};
+      document.addEventListener('mousemove', e=>{
+        mouse.x = e.clientX; mouse.y = e.clientY;
+        cur.style.left = mouse.x + 'px'; cur.style.top = mouse.y + 'px';
+      });
+      // enlarge on interactive hover
+      const hoverables = document.querySelectorAll('.btn, .dish, .menu-item, .card, .add-cart');
+      hoverables.forEach(el=>{
+        el.addEventListener('mouseenter', ()=> cur.classList.add('big'));
+        el.addEventListener('mouseleave', ()=> cur.classList.remove('big'));
+      });
+      // disappear near form inputs for natural typing
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(i=>{
+        i.addEventListener('focus', ()=> cur.style.opacity = 0);
+        i.addEventListener('blur', ()=> cur.style.opacity = 1);
+      });
+    })();
+
+    /* ===========================
+       CART: simple in-memory cart
+       =========================== */
+    (function cartModule(){
+      const cartOpen = document.getElementById('cart-open');
+      const cartClose = document.getElementById('cart-close');
+      const cartEl = document.getElementById('cart');
+      const cartList = document.getElementById('cart-list');
+      const cartCount = document.getElementById('cart-count');
+      const cartTotal = document.getElementById('cart-total');
+      const checkoutBtn = document.getElementById('checkout');
+      const addButtons = document.querySelectorAll('.add-cart');
+
+      let cart = {}; // id -> qty
+
+      function updateUI(){
+        cartList.innerHTML = '';
+        let total = 0, items = 0;
+        Object.keys(cart).forEach(id=>{
+          const qty = cart[id];
+          const item = menuData[id];
+          items += qty;
+          total += item.price * qty;
+          const node = document.createElement('div');
+          node.className = 'cart-item';
+          node.innerHTML = `
+            <div class="ci-thumb" style="background-image:url('${item.img}')"></div>
+            <div class="ci-meta">
+              <div style="font-weight:800">${item.title}</div>
+              <div class="muted">₨ ${item.price} • x${qty}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+              <button class="btn small inc" data-id="${id}" style="padding:6px 8px;font-size:13px">+</button>
+              <button class="btn ghost small dec" data-id="${id}" style="padding:6px 8px;font-size:13px">−</button>
+            </div>
+          `;
+          cartList.appendChild(node);
+        });
+        cartCount.textContent = items;
+        cartTotal.textContent = '₨ ' + total;
+      }
+
+      function openCart(){ cartEl.classList.add('open'); cartEl.setAttribute('aria-hidden','false'); }
+      function closeCart(){ cartEl.classList.remove('open'); cartEl.setAttribute('aria-hidden','true'); }
+
+      cartOpen.addEventListener('click', openCart);
+      cartClose.addEventListener('click', closeCart);
+
+      // add event on add buttons
+      addButtons.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const id = btn.dataset.id;
+          cart[id] = (cart[id]||0) + 1;
+          // small visual feedback: animate button
+          btn.animate([{transform:'scale(1)'},{transform:'scale(0.92)'},{transform:'scale(1)'}], {duration:260});
+          updateUI();
+          openCart();
+        });
+      });
+
+      // handle increment/decrement in cart (delegation)
+      cartList.addEventListener('click', (e)=>{
+        const inc = e.target.closest('.inc');
+        const dec = e.target.closest('.dec');
+        if(inc){ const id=inc.dataset.id; cart[id]=(cart[id]||0)+1; updateUI(); }
+        if(dec){ const id=dec.dataset.id; cart[id]=(cart[id]||0)-1; if(cart[id]<=0) delete cart[id]; updateUI(); }
+      });
+
+      // Checkout (demo)
+      checkoutBtn.addEventListener('click', ()=>{
+        if(Object.keys(cart).length === 0){ alert('Your cart is empty.'); return; }
+        alert('Checkout demo: Order placed! (this is a demo flow).');
+        cart = {}; updateUI(); closeCart();
+      });
+
+      // close when clicking outside (simple)
+      document.addEventListener('click', (e)=>{
+        if(!e.target.closest('.cart-side') && !e.target.closest('.cart-btn')) {
+          closeCart();
+        }
+      });
+
+      // expose for other parts if needed
+      window.hayatCart = { add: (id, qty=1)=> { cart[id]=(cart[id]||0)+qty; updateUI(); } };
+    })();
+
+    /* ===========================
+       HERO ICON INTERACTIONS: small tilt based on mouse
+       =========================== */
+    (function heroTilt(){
+      const card = document.getElementById('food-card');
+      const glass = document.querySelector('.food-glass');
+      glass.addEventListener('mousemove', (e)=>{
+        const r = glass.getBoundingClientRect();
+        const cx = r.left + r.width/2;
+        const cy = r.top + r.height/2;
+        const dx = (e.clientX - cx);
+        const dy = (e.clientY - cy);
+        const rx = Math.max(-8, Math.min(8, -dy/25));
+        const ry = Math.max(-14, Math.min(14, dx/25));
+        card.style.transform = `translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      glass.addEventListener('mouseleave', ()=> card.style.transform = '');
+    })();
+
+    /* ===========================
+       CONTACT FORM (demo)
+       =========================== */
+    (function contact(){
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name = form.querySelector('#name').value.trim();
+        const email = form.querySelector('#email').value.trim();
+        const message = form.querySelector('#message').value.trim();
+        if(!name || !email || !message){ alert('Please fill the form.'); return; }
+        // demo: show message and reset
+        alert('Thanks, ' + name + '! We received your message — this is a demo response.');
+        form.reset();
+      });
+    })();
+
+    /* ===========================
+       SMALL UI HELPERS
+       =========================== */
+    // year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // link actions for menu and order buttons
+    document.getElementById('hero-menu').addEventListener('click', ()=> location.hash = '#menu');
+    document.getElementById('hero-order').addEventListener('click', ()=> document.getElementById('cart-open').click());
+    document.getElementById('order-now').addEventListener('click', ()=> document.getElementById('cart-open').click());
+
+    // simple reveal on scroll
+    (function reveal(){
+      const obs = new IntersectionObserver(entries=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting) en.target.style.transform = 'translateY(0)';
+        });
+      }, {threshold:0.08});
+      document.querySelectorAll('.card, .dish, .menu-item, .about, .contact').forEach(el=>{
+        el.style.transform = 'translateY(12px)';
+        el.style.transition = 'transform .7s cubic-bezier(.2,.9,.3,1)';
+        obs.observe(el);
+      });
+    })();
+
+    // theme toggle - demo that flips accent slightly
+    (function themeToggle(){
+      const toggle = document.getElementById('theme-toggle');
+      let alt=false;
+      toggle.addEventListener('click', ()=>{
+        alt = !alt;
+        if(alt){
+          document.documentElement.style.setProperty('--cream-50','#F5EDD6');
+          document.documentElement.style.setProperty('--accent','#B6732A');
+        } else {
+          document.documentElement.style.setProperty('--cream-50','#F9E0AE');
+          document.documentElement.style.setProperty('--accent','#D9903D');
+        }
+        toggle.animate([{transform:'rotate(0)'},{transform:'rotate(25deg)'},{transform:'rotate(0)'}],{duration:420});
+      });
+    })();
+
+    /* ===========================
+       Accessibility hints: keyboard open cart using 'c'
+       =========================== */
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='c' || e.key==='C'){ document.getElementById('cart-open').click(); }
+    });
+
+    /* ===========================
+       Small performance note:
+       Images used are remote Unsplash links (demo). For production, replace with optimized assets.
+       =========================== */
+
+  </script>
+</body>
+</html>
